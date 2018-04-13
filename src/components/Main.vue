@@ -1,11 +1,13 @@
 <template>
-  <div>
-    <ul v-for="(obj, key) in products" :key="key">
-      <li v-for="prod in obj.product" :key="prod.title">
-        <h3> {{ prod.title }} ${{prod.price}}</h3>
-        <img :src="prod.imgUrl" />
-      <div v-html="prod.desc"></div>
-      </li></ul>
+  <div class="col-sm-12">
+    <div v-for="(obj, key) in products" :key="key" class="row">
+      <div class="col-sm-3" v-for="prod in obj.product" :key="prod.title">
+        <h3> {{ prod.title }} <a :href="obj.url + obj.path"> Buy</a></h3>
+        <img :src="prod.imgUrl" class="img-responsive"/>
+        <div v-html="prod.desc"></div>
+        <h4> ${{prod.price}}</h4>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,12 +22,13 @@ export default {
   },
   created: function () {
     console.log('mounted')
-    var shop = firebase.database().ref('shops')
+    var user = firebase.database().ref('users')
     var _this = this
-    shop.on('value', function (snapshot) {
+    user.on('value', function (snapshot) {
       console.log(typeof (snapshot.val()))
       _this.products = snapshot.val()
-      // console.log(typeof (this.products))
+    }, function (error) {
+      console.log(error)
     })
   }
 }
