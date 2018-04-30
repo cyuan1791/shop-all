@@ -15,9 +15,11 @@
   },
   "dependencies": {
     "firebase": "^4.12.1",
+    "jshint": "^2.9.5",
     "vue": "^2.5.2",
     "vue-pagination": "^0.3.3",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-stripe": "^0.1.52"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
